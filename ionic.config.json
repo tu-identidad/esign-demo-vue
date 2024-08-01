@@ -1,0 +1,7 @@
+{
+  "name": "esign-demo-view",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
