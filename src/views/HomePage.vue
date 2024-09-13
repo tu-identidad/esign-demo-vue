@@ -16,15 +16,16 @@
         <ion-card-content>
           <strong>Welcome to eSign Demo</strong>
           <p>Click the button below to go to eSign</p>
+          <br>
+          <ion-button href="/sign" expand="block">Go to eSign</ion-button>
         </ion-card-content>
-        <ion-button href="/sign" expand="block">Go to eSign</ion-button>
       </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonCard } from '@ionic/vue';
+import { IonContent, IonCardContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonCard } from '@ionic/vue';
 </script>
 
 <style scoped>

@@ -3,14 +3,19 @@
         <ion-content>
             <ion-spinner v-if="isLoading" name="crescent"></ion-spinner>
             <iframe v-else :key="documentData" :src="documentData" frameborder="0" width="100%" height="100%"></iframe>
-            <ion-button expand="block" @click="">Continue</ion-button>
+            
         </ion-content>
+        <ion-footer>
+            <ion-toolbar>
+                <ion-button expand="block" href="/home">Continue</ion-button>
+            </ion-toolbar>
+        </ion-footer>
     </ion-page>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { IonPage, IonSpinner, IonContent } from '@ionic/vue';
+import { IonPage, IonButton, IonSpinner, IonContent, IonToolbar, IonFooter } from '@ionic/vue';
 import router from '@/router';
 import { eSignService, ESignGetDocumentResponseData } from '@/services/esign.service';
 
