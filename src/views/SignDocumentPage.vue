@@ -136,10 +136,6 @@ onMounted(() => {
       context.value.strokeStyle = 'black';
       context.value.lineWidth = 2;
     }
-    // Get the token
-    eSignService.getToken().then((token: string) => {
-      console.log('Token:', token);
-    });
   }
 });
 onUnmounted(() => {

@@ -28,8 +28,6 @@ const documentData = ref<string | undefined>(undefined);
 const isLoading = ref<boolean>(true);
 
 onMounted(async () => {
-    const reponse = await eSignService.getToken();
-    console.log(reponse);
     getDocumentResponseData.value = await eSignService.getDocument(documentId.toString());
     if (getDocumentResponseData.value && getDocumentResponseData.value.image) {
         // Convert base64 string to data URL

@@ -19,10 +19,11 @@ export interface ESignGetDocumentResponseData {
 
 export class ESignService {
   private axiosInstance: AxiosInstance;
-  private token: string;
 
+  /**
+   * Constructor for the ESignService class
+   */
   constructor() {
-    this.token = '';
     this.axiosInstance = axios.create({
       baseURL: import.meta.env.VITE_SERVICE_URL, // This is a placeholder for the backend service URL
       headers: {
@@ -31,14 +32,15 @@ export class ESignService {
       },
     });
   }
+
   /**
    * This method is used to send the signature data to the proxy API
    * @param signatureData ESignRequestData
    * @returns Promise<any>
    */
   async addSignature (signatureData: ESignAddSignatureRequestData) {
-    const response = await this.axiosInstance.post('/esign/addSignatory', signatureData, { 
-      headers : { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+  this.token} 
+    const response = await this.axiosInstance.post('/esign/addSingleSignatory', signatureData, { 
+      headers : { 'Content-Type': 'application/json'}
     });
     return response.data;
   };
@@ -49,22 +51,11 @@ export class ESignService {
    * @returns Promise<ESignGetDocumentResponseData>
    */
   async getDocument (identifier: string): Promise<ESignGetDocumentResponseData> {
-    const response = await this.axiosInstance.post(`/esign/getDocument/`, { 'identifier': identifier}, 
-      { headers: { 'Authorization': 'Bearer '+  this.token } 
+    const response = await this.axiosInstance.post(`/esign/getDocument`, { 'identifier': identifier}, {
+      headers : { 'Content-Type': 'application/json'}
     });
     return response.data;
   }
-
-  /**
-   * This method is used to get the token from the proxy API
-   * @returns Promise<string>
-   */
-  async getToken () : Promise<string> {
-    const apikey = import.meta.env.VITE_APIKEY; // This is a placeholder for the API key
-    const response = await this.axiosInstance.post('/token', {}, { headers: {'apikey' : apikey} });
-    this.token = response.data.token;
-    return response.data;
-  };
 
 }
 
